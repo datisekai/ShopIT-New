@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/footer.css">
+    <link rel="stylesheet" href="./assets/css/admin.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet"
+        href="./assets/fonts/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>ShopIT - ADMIN</title>
+</head>
+
+<body>
+    <div class="apps" onload="hideAdminBar();">
+        <div id="preLoader"></div>
+        <div class="header">
+            <div class="header__nav">
+
+                <div class="header__logo">
+                    <a href="index.html">
+
+                        <img src="./assets/img/logonew.png" alt="" class="header__logo-img" id="logo">
+                    </a>
+                </div>
+
+                <div class="header__search hide-on-tablet">
+
+                    <div class="header__search-input">
+                        <input type="text" placeholder="Search something........." class="search-input" id="txtsearch"
+                            onchange="searchInfo('txtsearch');">
+                    </div>
+
+                    <div class="header__search-btn" onclick="searchInfo('txtsearch');">
+                        <i class="search-btn fas fa-search"></i>
+                    </div>
+
+                </div>
+
+                <div class="header__form">
+
+                    <div class="header__cart" onclick="onCart();" title="Ấn để vào giỏ hàng">
+                        <i class="cart-btn fas fa-cart-plus"></i>
+                        <!-- <a style="display: none;" id="cartQuatify"></a> -->
+                        <span id="quantifyProductCart"></span>
+                    </div>
+
+                    <div class="header__login" onclick="displayLogin();" title="Ấn để đăng nhập">
+                        <p id="user__display" class="header__login-btn">Login</p>
+                    </div>
+
+                    <div class="header__has__login" style="display: none;" id="hasLogin">
+                        <img src="./assets/img/avt.jpg" alt="">
+                        <span id="userLogin">Datisekai</span>
+                        <ul class="has__login-list">
+                            <li class="has__login-item" id="admin" style="display: none;"><a href="admin.html">Admin</a>
+                            </li>
+                            <li class="has__login-item"><a href="index.html?event=vqmm">Vòng quay</a></li>
+                            <li class="has__login-item"><a href="cart.html">Giỏ hàng</a></li>
+                            <li class="has__login-item"><a href="order.html">Đơn đặt hàng</a></li>
+                            <li class="has__login-item"><a href="#" id="logout" onclick="onLogOut();">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                    <div class="header__bars hide-on-pc" id="barsBtn" onclick="displayModalBars();">
+                        <i class="bars-btn fas fa-bars"></i>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="modal__login">
+
+            <div class="modal__overlay" onclick="hideLogin();"></div>
+
+            <div class="modal__content">
+
+                <div class="modal__content-heading">Login</div>
+                <form action="index.html" method="POST" id="form-login" role="form" name="login">
+                    <div class="modal__content-list">
+                        <p id="errorLogin"></p>
+                        <!-- <label for="username" class="modal__content-des">Username</label> -->
+                        <input type="text" placeholder="Enter your username......" name="username" id="username"
+                            class="modal__content-item" onblur="hideErrorUser();">
+                        <p id="errorUser"></p>
+                    </div>
+
+                    <div class="modal__content-list">
+                        <!-- <label for="password" class="modal__content-des">Password</label> -->
+                        <input type="password" placeholder="Enter your password......" name="password" id="password"
+                            class="modal__content-item" onblur="hideErrorPass();">
+                        <p id="errorPass"></p>
+                    </div>
+
+                    <div class="modal__content-list" id="modal__email" style="display: none;">
+                        <!-- <label for="password" class="modal__content-des">Email</label> -->
+                        <input type="text" placeholder="Enter your email......" name="email" id="email"
+                            class="modal__content-item" onblur="hideErrorEmail();">
+                        <p id="errorEmail"></p>
+                    </div>
+
+                    <div class="modal__content-list">
+                        <input type="button" name="button" value="LOGIN" class="modal__content-btn" id="login"
+                            onclick="onLogin();">
+                        <input type="button" name="button" value="REGISTER" class="modal__content-btn"
+                            style="display: none;" id="register" onclick="onRegister();">
+                    </div>
+
+                    <!-- <p class="modal__content-login-other">or sign in with</p>
+
+                    <div class="modal__content-social">
+                        <div class="modal__content-social-item"><i class="social-item fab fa-facebook"></i></div>
+                        <div class="modal__content-social-item"><i class="social-item fab fa-telegram"></i></div>
+                        <div class="modal__content-social-item"><i class="social-item fab fa-github"></i></div>
+                    </div> -->
+
+                    <p class="modal__content-sign-up" id="modal-signup">Do not have an account?<a
+                            class="modal__content-sign-up-btn" id="signup" onclick="onSignUp();">Sign up</a></p>
+                    <p class="modal__content-sign-up" style="display:none;" id="modal-signin">Do you already have an
+                        account?<a class="modal__content-sign-up-btn" id="signin" onclick="onSignIn();">Sign in</a></p>
+
+                    <div class="modal__content-btn-close" onclick="hideLogin();">
+                        <i class="btn-close far fa-times-circle"></i>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <div class="modal__bars">
+            <div class="modal__bars-overlay" id="barsOverlay" onclick="hideModalBars();"></div>
+
+            <div class="modal__bars-content" id="barsContent">
+                <div class="bars-close" id="barsClose" onclick="hideModalBars();">
+                    <i class="bars-close-btn fas fa-times"></i>
+                </div>
+
+                <div class="bars-search">
+                    <input type="text" placeholder="Search something...." onchange="searchInfo('txtsearch2');"
+                        id="txtsearch2">
+                </div>
+
+                <div class="bars-category">
+                    <ul class="bars__list">
+                        <a href="index.html#"><li class="bars__list-item">Home</li></a>
+                        <a href="index.html#introduct"><li class="bars__list-item">Giới thiệu</li></a>
+                        <a href="index.html#videoreview"><li class="bars__list-item">Video review</li></a>
+                        <a href="index.html#contacts"><li class="bars__list-item">Liên hệ</li></a>
+                        <!-- <a href="cart.html">
+	
+                            <li class="bars__list-item">Cart</li>
+                        </a> -->
+                        <li class="bars__list-item" id="barsCategory" onclick="displayCategoryBars();">Category</li>
+                        <span style="display: none;" id="barCategoryClose" onclick="hideCategoryBars();"><i
+                                class="fas fa-window-close"></i></span>
+                        <ul class="bars-item-list" id="barsCategoryItem">
+                            <a href="?product=iphone">
+                                <li class="bars-item-list-item">Iphone</li>
+                            </a>
+                            <a href="?product=ipad">
+                                <li class="bars-item-list-item">Ipad</li>
+                            </a>
+                            <a href="?product=macbook">
+                                <li class="bars-item-list-item">Macbook</li>
+                            </a>
+
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal__add-product">
+            <div class="modal__add-product-overlay" onclick="hideModalAdd();"></div>
+
+            <div class="modal__add-product-content">
+
+                <div class="modal__add-product-header">
+                    <p class="modal__add-product-header-heading">Thêm mới sản phẩm</p>
+                </div>
+
+                <div class="modal__add-product-id">
+                    <!-- <input type="text" value="1" readonly id="txtadminid"> -->
+                </div>
+
+                <div class="modal__add-product-user">
+                    <!-- <input type="text" value="ADMIN" id="txtadminuser"> -->
+                </div>
+
+                <div class="modal__add-product-name">
+                    <!-- <input type="text" placeholder="Tên sản phẩm ....."> -->
+                </div>
+
+                <div class="modal__add-product-img">
+                    <input type="file" name="" id="fadminimg">
+                </div>
+
+                <div class="modal__add-product-prices">
+                    <!-- <input type="text" placeholder="Giá sản phẩm"> -->
+                </div>
+
+                <div class="modal__add-product-type">
+                    <select name="" id="selectadminproduct">
+                        <option value="">Chọn loại</option>
+                        <option value="iphone">IPHONE</option>
+                        <option value="ipad">IPAD</option>
+                        <option value="macbook">MACBOOK</option>
+                    </select>
+
+
+                </div>
+
+                <div class="modal__add-product-btn" id="btnadminadd">
+                    <button>Thêm mới</button>
+                </div>
+
+                <div class="modal__add-product-btn" style="display: none;" id="btnadminupdate">
+                    <!-- <button>Cập nhật</button> -->
+                </div>
+
+                <div class="modal__add-product-btn-close" onclick="hideModalAdd();">
+                    <i class="fas fa-window-close"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal__detail-bill">
+            <div class="modal__detail-bill-overlay" onclick="hideModalDetail();"></div>
+
+            <div class="modal__detail-bill-content">
+                <div class="modal__detail-bill-header">
+                    <p>Chi tiết đơn hàng</p>
+                </div>
+
+                <div class="modal__detail-bill-id">
+                    <p>Mã đơn hàng: e2fe3a67-4f21-49af-8216-871a47b39776</p>
+                </div>
+
+                <div class="modal__detail-bill-product">
+
+                    <div class="modal__detail-bill-product-header">
+                        <p>Sản phẩm</p>
+                    </div>
+
+                    <div class="modal__detail-bill-title">
+                        <div class="modal__detail-bill-product-id-title">
+                            <p>STT</p>
+                        </div>
+
+                        <div class="modal__detail-bill-product-name-title">
+                            <p>Tên sản phẩm</p>
+                        </div>
+
+                        <div class="modal__detail-bill-product-img-title">
+                            <p>Ảnh</p>
+                        </div>
+
+                        <div class="modal__detaill-bill-product-prices-title">
+                            <p>Giá</p>
+                        </div>
+
+                        <div class="modal__detaill-bill-product-quantify-title">
+                            <p>SL</p>
+                        </div>
+                    </div>
+                    <div class="modal__detail-bill-product-content">
+
+
+                    </div>
+
+                    <div class="modal__detail-bill-product-time">
+                        <p>Năm đặt hàng: 2021</p>
+                    </div>
+
+                    <div class="modal__detail-bill-product-total">
+                        <p>Tổng tiền : 1200$</p>
+                    </div>
+
+                    <div class="modal__detail-close" onclick="hideModalDetail();">
+                        <i class="fas fa-window-close"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="apps__container">
+
+            <div class="apps__category">
+
+                <div class="apps__category-header">
+                    <div class="apps__category-heading">
+                        <p>ADMIN</p>
+                    </div>
+                    <div class="apps__category-btn" onclick="hideAdminBar();" id="hideAdmin">
+                        <i class="fas fa-signal"></i>
+                    </div>
+
+                    <div class="apps__category-btn" id="displayAdmin" onclick="displayAdminBar();">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+
+                <ul class="apps__category-list">
+                    <a href="admin.html?manager=product">
+                        <li class="apps__category-list-item" id="managerProduct"><i class="fab fa-product-hunt"></i>
+                            <span id="quanlysp">Quản lý sản phẩm</span></li>
+                    </a>
+                    <a href="admin.html?manager=user">
+                        <li class="apps__category-list-item" id="managerUser"><i class="fas fa-users"></i> <span
+                                id="quanlynd"">Quản lý người dùng</span></li></a>
+                    <a href=" admin.html?manager=handleproduct">
+                        <li class="apps__category-list-item" id="managerCart"><i class="fas fa-cart-arrow-down"></i>
+                            <span id="xulydonhang">Xử lý đơn hàng</span></li>
+                    </a>
+                    <a href="admin.html?manager=benefits">
+                        <li class="apps__category-list-item" id="managerStatistic"><i class="fas fa-chart-bar"></i>
+                            <span id="thongkedoanhthu">Thống kê doanh thu</span></li>
+                    </a>
+                </ul>
+            </div>
+
+            <div class="apps__content" onclick="hideAdminBar();">
+
+                <div class="apps__content-header">
+                    <div class="apps__content-heading">
+                        <p class="apps__content-heading-content">Danh sách</p>
+                    </div>
+
+                    <div class="apps__content-add-product">
+                        <button><i class="fas fa-cart-plus"></i> Thêm mới</button>
+                    </div>
+                </div>
+
+                <div class="apps__content-container">
+                    <div class="apps__content-container-title hide-on-mobile">
+                    </div>
+
+                    <div class="apps__content-container-show hide-on-mobile-admin">
+                    </div>
+
+                    <div class="apps__content-mobile hide-on-pc display-on-mobile">
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination__list">
+                            <a href="admin.html" class="pagination__list-link">
+                                <div class="pagination__list-item">Home</div>
+                            </a>
+                            <a href="" id="prePage" class="pagination__list-link">
+                                <div class="pagination__list-item">Prev</div>
+                            </a>
+                            <a href="" class="pagination__list-link" id="page1">
+                                <div class="pagination__list-item">1</div>
+                            </a>
+                            <a href="" class="pagination__list-link" id="page2">
+                                <div class="pagination__list-item">2</div>
+                            </a>
+                            <a href="" class="pagination__list-link" id="page3">
+                                <div class="pagination__list-item">3</div>
+                            </a>
+                            <a href="" id="nextPage" class="pagination__list-link">
+                                <div class="pagination__list-item">Next</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <script src="./assets/js/admin.js"></script>
+</body>
+
+</html>

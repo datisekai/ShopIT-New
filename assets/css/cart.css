@@ -1,0 +1,209 @@
+
+td {  
+    vertical-align: middle;
+    }
+
+    .quatify__icon-item{
+        white-space: nowrap;
+    }
+
+    .a__icon{
+        color: black;
+    }
+    .container__cart{
+        width:100%;
+        overflow-x: hidden;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 400px;
+        
+        }
+        
+        .button_addsale{
+            width: 100%;
+            padding: 8px;
+            border: none;
+            background-color: #FFEB01;
+            color: white;
+            border-radius: 5px;
+            font-family: sans-serif;
+        }
+
+        .button_addsale:hover{
+            cursor: pointer;
+            opacity: 0.6;
+        }
+     
+    @media (min-width: 724px) and (max-width: 1024px){
+        .plus{
+            margin-left: 1px;
+        }
+
+        .minus{
+            margin-right: 2px;
+        }
+        
+        .quatify__icon{
+            display: flex !important;
+            align-items: center;
+        }
+        table#cart tbody td .form-control { 
+        width:10%; 
+        display: inline !important;
+        } 
+        .section-head{
+            margin-left: 0px;
+            margin-right: -2px;
+        }
+        .actions .btn { 
+        /* width:10%;  */
+        margin-bottom:0.5em ;
+        } 
+        
+        .actions .btn-info { 
+        float:left;
+        margin-left: 1px;
+        }
+        .actions .btn-info-1{
+            float: right;
+            margin-right: 2px;
+        }
+        
+        .actions .btn-danger { 
+        float:right;
+        } 
+        
+        table#cart thead {
+        display: none;
+        } 
+        
+        table#cart tbody td {
+        display: block;
+        padding: .6rem;
+        min-width:320px;
+        } 
+        
+        table#cart tbody tr td:first-child {
+        background: #333;
+        color: #fff;
+        } 
+        
+        table#cart tbody td:before { 
+        content: attr(data-th);
+        font-weight: bold; 
+        display: inline-block;
+        width: 8rem;
+        text-transform: uppercase;
+        } 
+        
+        table#cart tfoot td {
+        display:block;
+        } 
+        table#cart tfoot td .btn {
+        display:block;
+        }
+        .btn{
+        border:5px solid;
+        }
+        .text-cennter-1{
+            text-align: right;
+        }
+        .Price{
+            text-align:inherit;
+        }
+        .nomargin{
+            flex-direction: column-reverse;
+            text-align: justify;
+        }
+    }
+    @media (max-width: 723px) { 
+        .plus{
+            margin-left: 1px;
+        }
+
+        .container__cart{
+            width:100%;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            padding-bottom: 500px;
+            }
+            
+
+        .minus{
+            margin-right: 2px;
+        }
+        .quatify__icon-item{
+            white-space: nowrap;
+        }
+        .quatify__icon{
+            display: flex !important;
+            align-items: center;
+        }
+        table#cart tbody td .form-control { 
+        width:10%; 
+        display: inline !important;
+        } 
+        .section-head{
+            margin-left: 0px;
+            margin-right: -2px;
+        }
+        .actions .btn { 
+        /* width:10%;  */
+        margin-bottom:0.5em ;
+        } 
+        
+        .actions .btn-info { 
+        float:left;
+        margin-left: 1px;
+        }
+        .actions .btn-info-1{
+            float: right;
+            margin-right: 2px;
+        }
+        
+        .actions .btn-danger { 
+        float:right;
+        } 
+        
+        table#cart thead {
+        display: none;
+        } 
+        
+        table#cart tbody td {
+        display: block;
+        padding: .6rem;
+        min-width:320px;
+        } 
+        
+        table#cart tbody tr td:first-child {
+        background: #333;
+        color: #fff;
+        } 
+        
+        table#cart tbody td:before { 
+        content: attr(data-th);
+        font-weight: bold; 
+        display: inline-block;
+        width: 8rem;
+        } 
+        
+        table#cart tfoot td {
+        display:block;
+        } 
+        table#cart tfoot td .btn {
+        display:block;
+        }
+        .btn{
+        border:5px solid;
+        }
+        .text-cennter-1{
+            text-align: right;
+        }
+        .Price{
+            text-align:inherit;
+        }
+        .nomargin{
+            flex-direction: column-reverse;
+            text-align: justify;
+        }
+}

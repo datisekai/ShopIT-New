@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-100">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./assets/css/cart.css" type="text/css">
+	<link rel="stylesheet" href="./assets/css/text.css" type="text/css">
+	<link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+	<link rel="stylesheet" href="./assets/css/responsive.css">
+	<link rel="stylesheet" href="./assets/css/footer.css">
+	<link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+	<script src="https://kit.fontawesome.com/a9da70934b.js" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="./assets/js/cart.js"></script>
+	
+</head>
+
+<body>
+	<div id="preLoader"></div>
+		<div class="main__cart">	
+			<div class="header">
+				<div class="header__nav">
+
+					<div class="header__logo">
+						<a href="index.html">
+		
+							<img src="./assets/img/logonew.png" alt="" class="header__logo-img">
+						</a>
+					</div>
+					<div class="header__search hide-on-tablet">
+		
+						<div class="header__search-input">
+							<input type="text" placeholder="Search something........." class="search-input" id="txtsearch" onchange="searchInfo('txtsearch');">
+						</div>
+						
+						<div class="header__search-btn" onclick="searchInfo('txtsearch');">
+							<i class="search-btn fas fa-search"></i>
+						</div>
+		
+					</div>
+					<div class="header__form">
+		
+						<div class="header__cart">
+							<i class="cart-btn fas fa-cart-plus"></i>
+						</div>
+		
+						<div class="header__login" onclick="displayLogin();">
+							<p id="user__display" class="header__login-btn">Login</p>
+						</div>
+		
+						<div class="header__has__login" style="display: none;" id="hasLogin">
+							<img src="./assets/img/avt.jpg" alt="">
+							<span id="userLogin">Datisekai</span>
+							<ul class="has__login-list">
+								<li class="has__login-item" id="admin" style="display: none;"><a href="admin.html">Admin</a></li>
+								<li class="has__login-item"><a href="index.html?event=vqmm">Vòng quay</a></li>
+								<li class="has__login-item"><a href="cart.html">Giỏ hàng</a></li>
+								<li class="has__login-item"><a href="order.html">Đơn đặt hàng</a></li>
+								<li class="has__login-item"><a href="#" id="logout" onclick="onLogOut();">Đăng xuất</a></li>
+							</ul>
+						</div>
+						<div class="header__bars hide-on-pc" id="barsBtn" onclick="displayModalBars();">
+							<i class="bars-btn fas fa-bars"></i>
+						</div>
+		
+				  
+					</div>
+				</div>
+	
+	
+			</div>
+			<div class="modal__bars">
+				<div class="modal__bars-overlay" id="barsOverlay" onclick="hideModalBars();"></div>
+	
+				<div class="modal__bars-content" id="barsContent">
+					<div class="bars-close" id="barsClose" onclick="hideModalBars();">
+						<i class="bars-close-btn fas fa-times"></i>
+					</div>
+	
+					<div class="bars-search">
+						<input type="text" placeholder="Search something...." onchange="searchInfo('txtsearch2');" id="txtsearch2">
+					</div>
+	
+					<div class="bars-category">
+						<ul class="bars__list">
+							<a href="index.html">
+	
+								<li class="bars__list-item">Home</li>
+							</a>
+							<li class="bars__list-item" id="barsCategory" onclick="displayCategoryBars();">Category</li>
+							<span style="display: none;" id="barCategoryClose" onclick="hideCategoryBars();"><i class="fas fa-window-close"></i></span>
+							<ul class="bars-item-list" id="barsCategoryItem">
+								<a href="?product=iphone"><li class="bars-item-list-item">Iphone</li></a>
+								<a href="?product=ipad"><li class="bars-item-list-item">Ipad</li></a>
+								<a href="?product=macbook"><li class="bars-item-list-item">Macbook</li></a>
+								
+							</ul>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal__address">
+				<div class="modal__address-overlay" onclick="hideModalPay()"></div>
+				<div class="modal__address-content">
+					<div class="modal__address-content-input">
+						<label for="">Địa chỉ</label> <br>
+						<input type="text" placeholder="Enter your address..." id="txtaddress" required oninput="hideErrorAddress()">
+						<p id="txtaddresserror"></p>
+					</div>
+
+					<div class="modal__address-content-input">
+						<label for="">Số điện thoại</label>
+						<br>
+						<input type="text" placeholder="Enter your phone..." id="txtphone" required oninput="hideErrorPhone()">
+						<p id="txtphoneerror"></p>
+					</div>
+
+					<div class="modal__address-content-button" onclick="onPay()">
+						<button>Thanh toán ngay</button>
+					</div>
+
+					<div class="modal__address-content-close" onclick="hideModalPay()">
+						<i class="fas fa-window-close"></i>
+					</div>
+				</div>
+			</div>
+			<div style="padding-top: 82px;">
+				<div class="section">
+					<!--Thanh tiêu đề-->
+					<p class="section-head">GIỎ HÀNG</p>
+					<!--End Thanh tiêu đề-->
+				<div class="container__cart"> 
+				<table id="cart" class="table table-hover table-condensed"> 
+					<thead> 
+						<tr> 
+							<th style="width:48%; text-transform: uppercase;" >Sản phẩm</th> 
+							<th style="width:11%; text-transform: uppercase;" >Giá</th> 
+							<th style="width:14%; text-transform: uppercase;" >Số lượng</th> 
+							<th style="width:11%; text-transform: uppercase;" >Tổng</th>
+							<th style="width:16%; text-transform: uppercase;" >Thao tác</th>
+				
+						</tr> 
+					</thead> 
+					<tbody id="itemProduct" name="itemproduct">
+							
+					</tbody>
+						
+					<tfoot id="footerProduct">
+					</tfoot> 
+				</table>
+				</div>
+				</div>
+				</div>
+				<div class="footer">
+					<div class="footer__left">
+					   <div class="footer__left-item">
+						<i class="icon-footer fas fa-location-arrow"></i>
+					   <span class="footer__left-address"> 100 An Dương Vương,<br>   
+						   Phường 1, Quận 5, TpHCM
+					   </span>
+					   </div>
+					   <div class="footer__left-item">
+						<i class="icon-footer fas fa-phone-volume"></i>
+						   +123456789
+					   </div>
+					   <div class="footer__left-item">
+						<i class="icon-footer far fa-envelope-open"></i>
+						   ShopIT@gmail.com
+					   </div>
+					</div>
+					<div class="footer__right">
+						<div class="footer__right-heading">
+							<h2>About the ShopIT</h2>
+						</div>
+						<p class="footer__right-mid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br><br>
+							sed do eiusmod tempor incididunt ut labore et dolore<br><br>
+							magna aliqua. Ut enim ad minim veniam<br><br><br>
+						</p>
+						<span class="footer__icon">
+							<a href="#" class="footer__btn"><i class="icon-footer fab fa-facebook"></i></a>
+							<a href="#" class="footer__btn"><i class="icon-footer fab fa-youtube"></i></a>
+							<a href="#" class="footer__btn"><i class="icon-footer fab fa-instagram"></i></a>
+							<a href="#" class="footer__btn"><i class="icon-footer fab fa-linkedin-in"></i></a>
+						</span>
+					</div>
+				</div>
+		</div>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/info.css">
+    <link rel="stylesheet" href="./assets/css/footer.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css">
+    <title>ShopIT-Thông tin sản phẩm</title>
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <div class="main-info">
+        <div id="preLoader"></div>
+        <div class="header">
+            <div class="header__nav">
+
+                <div class="header__logo">
+                    <a href="index.html">
+    
+                        <img src="./assets/img/logonew.png" alt="" class="header__logo-img" id="logo">
+                    </a>
+                </div>
+                <div class="header__search hide-on-tablet">
+    
+                    <div class="header__search-input">
+                        <input type="text" placeholder="Search something........." class="search-input" id="txtsearch" onchange="searchInfo('txtsearch');">
+                    </div>
+                    
+                    <div class="header__search-btn" onclick="searchInfo('txtsearch');">
+                        <i class="search-btn fas fa-search"></i>
+                    </div>
+    
+                </div>
+                <div class="header__form">
+    
+                    <div class="header__cart" onclick="onCart();" title="Ấn để vào giỏ hàng">
+                        <i class="cart-btn fas fa-cart-plus"></i>
+                        <!-- <a style="display: none;" id="cartQuatify"></a> -->
+                        <span id="quantifyProductCart"></span>
+                    </div>
+    
+                    <div class="header__login" onclick="displayLogin();" title="Ấn để đăng nhập">
+                        <p id="user__display" class="header__login-btn">Login</p>
+                    </div>
+    
+                    <div class="header__has__login" style="display: none;" id="hasLogin">
+                        <img src="./assets/img/avt.jpg" alt="">
+                        <span id="userLogin">Datisekai</span>
+                        <ul class="has__login-list">
+                            <li class="has__login-item" id="admin" style="display: none;"><a href="admin.html">Admin</a></li>
+                            <li class="has__login-item"><a href="index.html?event=vqmm">Vòng quay</a></li>
+                            <li class="has__login-item"><a href="cart.html">Giỏ hàng</a></li>
+                            <li class="has__login-item"><a href="order.html">Đơn đặt hàng</a></li>
+                            <li class="has__login-item"><a href="#" id="logout" onclick="onLogOut();">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                    <div class="header__bars hide-on-pc" id="barsBtn" onclick="displayModalBars();">
+                        <i class="bars-btn fas fa-bars"></i>
+                    </div>
+    
+              
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="modal__login">
+
+            <div class="modal__overlay" onclick="hideLogin();"></div>
+
+            <div class="modal__content">
+                    
+                <div class="modal__content-heading">Login</div>
+                <form action="index.html" method="POST" id="form-login" role="form" name="login">
+                    <div class="modal__content-list">
+                        <p id="errorLogin"></p>
+                        <!-- <label for="username" class="modal__content-des">Username</label> -->
+                        <input type="text" placeholder="Enter your username......" name="username" id="username" class="modal__content-item" onblur="hideErrorUser();">
+                        <p id="errorUser"></p>
+                    </div>
+                
+                    <div class="modal__content-list">
+                        <!-- <label for="password" class="modal__content-des">Password</label> -->
+                        <input type="password" placeholder="Enter your password......" name="password" id="password" class="modal__content-item" onblur="hideErrorPass();">
+                        <p id="errorPass"></p>
+                    </div>
+
+                    <div class="modal__content-list" id="modal__email" style="display: none;">
+                        <!-- <label for="password" class="modal__content-des">Email</label> -->
+                        <input type="text" placeholder="Enter your email......" name="email" id="email" class="modal__content-item" onblur="hideErrorEmail();">
+                        <p id="errorEmail"></p>
+                    </div>
+
+                    <div class="modal__content-list">
+                        <input type="button" name="button" value="LOGIN" class="modal__content-btn" id="login" onclick="onLogin();">   
+                        <input type="button" name="button" value="REGISTER" class="modal__content-btn" style="display: none;" id="register" onclick="onRegister();"> 
+                    </div>
+                
+                    <!-- <p class="modal__content-login-other">or sign in with</p>
+
+                    <div class="modal__content-social">
+                        <div class="modal__content-social-item"><i class="social-item fab fa-facebook"></i></div>
+                        <div class="modal__content-social-item"><i class="social-item fab fa-telegram"></i></div>
+                        <div class="modal__content-social-item"><i class="social-item fab fa-github"></i></div>
+                    </div> -->
+
+                    <p class="modal__content-sign-up" id="modal-signup">Do not have an account?<a class="modal__content-sign-up-btn" id="signup" onclick="onSignUp();">Sign up</a></p>
+                    <p class="modal__content-sign-up" style="display:none;" id="modal-signin">Do you already have an account?<a class="modal__content-sign-up-btn" id="signin" onclick="onSignIn();">Sign in</a></p>
+
+                    <div class="modal__content-btn-close" onclick="hideLogin();">
+                        <i class="btn-close far fa-times-circle"></i>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="modal__bars">
+            <div class="modal__bars-overlay" id="barsOverlay" onclick="hideModalBars();"></div>
+
+            <div class="modal__bars-content" id="barsContent">
+                <div class="bars-close" id="barsClose" onclick="hideModalBars();">
+                    <i class="bars-close-btn fas fa-times"></i>
+                </div>
+
+                <div class="bars-search">
+                    <input type="text" placeholder="Search something...." onchange="searchInfo('txtsearch2');" id="txtsearch2">
+                </div>
+
+                <div class="bars-category">
+                    <ul class="bars__list">
+                        <a href="index.html">
+
+                            <li class="bars__list-item">Home</li>
+                        </a>
+                        <!-- <a href="cart.html">
+	
+                            <li class="bars__list-item">Cart</li>
+                        </a> -->
+                        <li class="bars__list-item" id="barsCategory" onclick="displayCategoryBars();">Category</li>
+                        <span style="display: none;" id="barCategoryClose" onclick="hideCategoryBars();"><i class="fas fa-window-close"></i></span>
+                        <ul class="bars-item-list" id="barsCategoryItem">
+                            <a href="?product=iphone"><li class="bars-item-list-item">Iphone</li></a>
+                            <a href="?product=ipad"><li class="bars-item-list-item">Ipad</li></a>
+                            <a href="?product=macbook"><li class="bars-item-list-item">Macbook</li></a>
+                            
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="view__product">
+        </div>
+
+        <div class="comment__review">
+            <div class="comment__review-heading">
+                <p>Comment Review</p>
+            </div>
+
+            <div class="comment__review-content">
+                
+            </div>
+
+            <div class="action__comment">
+                <div class="action__comment-content">
+                    <input type="text" value="" placeholder="Enter your appreciate..." id="txtcomment">
+                </div>
+
+                <div class="action__comment-submit" onclick="submitComment();">
+                    <button>Đánh giá</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer">
+                <div class="footer__left">
+                   <div class="footer__left-item">
+                    <i class="icon-footer fas fa-location-arrow"></i>
+                   <span class="footer__left-address"> 100 An Dương Vương,<br>   
+                       Phường 1, Quận 5, TpHCM
+                   </span>
+                   </div>
+                   <div class="footer__left-item">
+                    <i class="icon-footer fas fa-phone-volume"></i>
+                       +123456789
+                   </div>
+                   <div class="footer__left-item">
+                    <i class="icon-footer far fa-envelope-open"></i>
+                       ShopIT@gmail.com
+                   </div>
+                </div>
+                <div class="footer__right">
+                    <div class="footer__right-heading">
+                        <h2>About the ShopIT</h2>
+                    </div>
+                    <p class="footer__right-mid">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br><br>
+                        sed do eiusmod tempor incididunt ut labore et dolore<br><br>
+                        magna aliqua. Ut enim ad minim veniam<br><br><br>
+                    </p>
+                    <span class="footer__icon">
+                        <a href="#" class="footer__btn"><i class="icon-footer fab fa-facebook"></i></a>
+                        <a href="#" class="footer__btn"><i class="icon-footer fab fa-youtube"></i></a>
+                        <a href="#" class="footer__btn"><i class="icon-footer fab fa-instagram"></i></a>
+                        <a href="#" class="footer__btn"><i class="icon-footer fab fa-linkedin-in"></i></a>
+                    </span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="./assets/js/info.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
