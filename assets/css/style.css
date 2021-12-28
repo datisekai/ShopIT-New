@@ -237,7 +237,7 @@
     padding: 8px 16px;
     background-color: #FFEB01;
     border-radius: 5px;
-    color: white;
+    color: #333;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -308,7 +308,7 @@
     padding: 8px 30px;
     background-color: #FFEB01;
     border: none;
-    color: white;
+    color: #333;
     font-size: 16px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     border-radius: 4px;
@@ -668,8 +668,9 @@
     padding: 8px;
     border: none;
     background-color: #FFEB01;
-    border-radius: 5px;
-    color: white;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #333;
     font-size: 16px;
     border: 1px solid #FFEB01;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -734,6 +735,23 @@
     cursor: pointer;
     background-color: #FFEB01;
     color: white;
+}
+
+.btnxemthem{
+    padding: 8px;
+    background-color: white;
+    border: 1px solid #FFEB01;
+    color: #333;
+    font-family: sans-serif;
+    font-weight: 600;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: 0.3s;
+}
+
+.btnxemthem:hover{
+    cursor: pointer;
+    background-color: #FFEB01;
 }
 
 /* End pagination */
@@ -861,7 +879,7 @@
     background-color: #FFEB01;
     padding: 8px 0;
     border: none;
-    color: white;
+    color: #333;
     font-size: 14px;
     font-family: sans-serif;
     border-radius: 6px;
@@ -892,7 +910,7 @@
 
 
 .modal__product-info-prices span {
-    color:#FFEB01; 
+    color:#333; 
     font-weight: 700;
 }
 
@@ -940,9 +958,10 @@
     margin-top: 8px;
     background-color: #FFEB01;
     text-align: center;
-    border-radius: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     padding: 6px 8px;
-    color: white;
+    color: #333;
     font-family: sans-serif;
     font-size: 20px;
     border: 1px solid #FFEB01;
@@ -1127,7 +1146,7 @@
     padding: 12px 16px;
     background-color: #FFEB01;
     border: none;
-    color: white;
+    color: #333;
     font-family: sans-serif;
     border-radius: 5px;
     font-size: 16px;
@@ -1142,7 +1161,7 @@
 #playagain{
     margin: 0 auto;
     text-decoration: none;
-    color: white;
+    color: #333;
     padding: 12px 16px;
     background-color: #FFEB01;
     border-radius: 5px;
@@ -1352,11 +1371,17 @@ canvas{
 }
 
 .search_prices button{
+    border: 1px solid #FFEB01;
+    padding: 4px;
+    background-color: white;
+    font-family: sans-serif;
+    transition: 0.3s;
+    color: #333;
 }
 
 .search_prices button:hover{
     cursor: pointer;
-    background-color: white;
+    background-color: #FFEB01;
     color: #333;
 }
 
@@ -1394,7 +1419,7 @@ canvas{
 .modal__address-content-button button{
     padding: 4px 8px;
     background-color: #FFEB01;
-    color:white;
+    color:#333;
     border: 1px solid #FFEB01;
     border-radius: 4px;
     transition: linear 0.3s;

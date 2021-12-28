@@ -121,11 +121,11 @@
     font-size: 32px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-right: 12px;
-    color: #FFEB01;
+    color: #333;
 }
 
 .view__product-right-prices-sale{
-    color: white;
+    color: #333;
     padding: 4px 8px;
     font-size: 14px;
     background-color: #FFEB01;
@@ -249,7 +249,7 @@
 .view__product-addcart button,
 .view__product-buynow button{
     padding: 10px 30px;
-    color: white;
+    color: #333;
     font-family: sans-serif;
     font-size: 18px;
     border: 1px solid #FFEB01;
@@ -349,7 +349,7 @@
     border: 1px solid #FFEB01;
     font-family: sans-serif;
     background-color: #FFEB01;
-    color: white;
+    color: #333;
     transition: linear 0.3s;
     width: 50%;
 }
